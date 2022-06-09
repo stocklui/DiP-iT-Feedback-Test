@@ -10,4 +10,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Run feedback script
-        run: ./feedback/feedback_test.py
+        run: |
+          git update-index --chmod=+x ./feedback/feedback_test.py
+          ./feedback/feedback_test.py
+          

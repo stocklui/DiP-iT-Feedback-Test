@@ -13,6 +13,9 @@ jobs:
       - uses: BSFishy/pip-action@v1
         with:
           packages: pygithub
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Run feedback script
         run: |
           git update-index --chmod=+x ./feedback/feedback_test.py

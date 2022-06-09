@@ -12,5 +12,5 @@ jobs:
       - name: Run feedback script
         run: |
           git update-index --chmod=+x ./feedback/feedback_test.py
-          ./feedback/feedback_test.py
+          python ./feedback/feedback_test.py
           

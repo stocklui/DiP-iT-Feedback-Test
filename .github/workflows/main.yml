@@ -15,13 +15,6 @@ jobs:
           packages: |
             pygithub
             GitPython
-     # - name: Create a Release
-      #  id: create_release
-       # uses: actions/create-release@v1
-       # env:
-       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       # with:
-       #   tag_name: ${{ github.ref }}
       - name: Run feedback script
         run: |
           git update-index --chmod=+x ./feedback/feedback_test.py
@@ -29,5 +22,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          WIKI_DIR: wiki/
         
           

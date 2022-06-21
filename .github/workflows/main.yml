@@ -26,5 +26,6 @@ jobs:
           python ./feedback/feedback_test.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         
           

@@ -16,7 +16,8 @@ jobs:
             pygithub
             GitPython
       - name: Run feedback script
-        run: | #          git submodule add https://github.com/${{ github.repository }}/wiki
+        run: | 
+          git submodule add https://github.com/${{ github.repository }}.wiki.git
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
         env:

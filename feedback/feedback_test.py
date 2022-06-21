@@ -9,7 +9,7 @@ contents = repository.get_contents("")
 while contents:
   file_content = contents.pop(0)
   if file_content.type == "dir":
-    contents.extend(repo.get_contents(file_content.path))
+    contents.extend(repository.get_contents(file_content.path))
   else:
     print(file_content)
 

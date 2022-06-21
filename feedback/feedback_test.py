@@ -4,6 +4,6 @@ import os
 
 
 g = Github(os.environ["GITHUB_TOKEN"])
-repo = g.get_repo("DiP-iT-Feedback-Test")
+repo = g.get_repo("stocklui/DiP-iT-Feedback-Test")
 
 print("test file")

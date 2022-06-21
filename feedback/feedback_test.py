@@ -5,8 +5,9 @@ import os
 
 g = Github(os.environ["GITHUB_TOKEN"])
 repository = g.get_repo(os.environ["GITHUB_REPOSITORY"])
-wiki = g.get_repo(os.environ["GITHUB_REPOSITORY"]+".wiki.git")
-print(wiki)
+print(os.environ["GITHUB_REPOSITORY"])
+#wiki = g.get_repo(os.environ["GITHUB_REPOSITORY"]+".wiki.git")
+print(os.environ["GITHUB_REPOSITORY"]+".wiki.git")
 contents = repository.get_contents("")
 while contents:
   file_content = contents.pop(0)

@@ -4,9 +4,11 @@ import os
 
 
 #g = Github(os.environ["GITHUB_TOKEN"])
-g = Github(os.environ["GITHUB_REPOSITORY"]+".wiki")
-repository = g.get_repo(os.environ["GITHUB_REPOSITORY"])
-print(os.environ["GITHUB_REPOSITORY"])
+g = Github(os.environ["GITHUB_TOKEN"])
+
+repository = g.get_repo(os.environ["GITHUB_REPOSITORY"]+".wiki")
+#repository = g.get_repo(os.environ["GITHUB_REPOSITORY"])
+#print(os.environ["GITHUB_REPOSITORY"])
 #wiki = g.get_repo(os.environ["GITHUB_REPOSITORY"]+"/wiki")
 contents = repository.get_contents("")
 while contents:

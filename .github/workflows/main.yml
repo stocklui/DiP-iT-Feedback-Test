@@ -24,4 +24,7 @@ jobs:
         run: |
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
           

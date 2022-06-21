@@ -6,7 +6,7 @@ import os
 #g = Github(os.environ["GITHUB_TOKEN"])
 g = Github(os.environ["GITHUB_TOKEN"])
 
-repository = g.get_repo(os.environ["GITHUB_REPOSITORY"]+".wiki.git")
+repository = g.get_repo("https://github.com/stocklui/DiP-iT-Feedback-Test/"+os.environ["GITHUB_REPOSITORY"]+".wiki.git")
 #repository = g.get_repo(os.environ["GITHUB_REPOSITORY"])
 #print(os.environ["GITHUB_REPOSITORY"])
 #wiki = g.get_repo(os.environ["GITHUB_REPOSITORY"]+"/wiki")

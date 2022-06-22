@@ -36,13 +36,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${{github.repository}}.wiki
-          branch: log
+          branch: main
         
           
       - name: add feedback log to wiki log
         run: |
           echo ${{github.repository}}
-          cp ../feedback/feedback.md ./feedback_$(date '+%s').md
+          mkdir -p ./.log
+          cp ../feedback/feedback.md ./.log/feedback_$(date '+%s').md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
@@ -58,7 +59,7 @@ jobs:
         with:    # specify the wiki repo and push the update.
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}.wiki
-          branch: log
+          branch: main
           
       - name: Checkout wiki code
         uses: actions/checkout@v2

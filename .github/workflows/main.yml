@@ -33,16 +33,17 @@ jobs:
       
           
       - name: Checkout wiki code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{github.repository}}.wiki
+          ref: 'main'
         
           
       - name: add feedback log to wiki log
         run: |
           echo ${{github.repository}}
-          mkdir -p ./.log
-          cp ../feedback/feedback.md ./.log/feedback_$(date '+%s').md
+          mkdir -p .log
+          cp ../feedback/feedback.md .log/feedback_$(date '+%s').md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
@@ -61,9 +62,12 @@ jobs:
           branch: main
         
         
-      - name: clear changes
-        run: |
-          rm -fr .log
+          
+      - name: Checkout wiki code
+        uses: actions/checkout@v3
+        with:
+          repository: ${{github.repository}}.wiki
+          ref: 'master'
       
       
       - name: concatinate feedback

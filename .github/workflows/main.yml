@@ -33,6 +33,8 @@ jobs:
           
       - name: copy wiki
         run: |
+          pwd
+          ls -la
           mv wiki ../feedback
           echo ${{github.repository}}
        # cp -r wiki ../feedback 

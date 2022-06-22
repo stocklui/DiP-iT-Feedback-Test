@@ -1,16 +1,12 @@
 from github import Github
 import os
 
-
-
-#g = Github(os.environ["GITHUB_TOKEN"])
 g = Github(os.environ["GITHUB_TOKEN"])
 
-repository = g.get_repo("https://github.com/stocklui/DiP-iT-Feedback-Test/"+os.environ["GITHUB_REPOSITORY"]+".wiki.git")
-#repository = g.get_repo(os.environ["GITHUB_REPOSITORY"])
-#print(os.environ["GITHUB_REPOSITORY"])
-#wiki = g.get_repo(os.environ["GITHUB_REPOSITORY"]+"/wiki")
-contents = repository.get_contents("")
+repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
+repo.create_file("wiki/feedback.md", "init commit", "#Add wiki page\ncontent1")
+
+contents = repo.get_contents("")
 while contents:
   file_content = contents.pop(0)
   if file_content.type == "dir":
@@ -18,9 +14,3 @@ while contents:
   else:
     print(file_content)
 
-
-#wiki.create_file("feedback.md", "init commit", "#Add wiki page\ncontent1")
-
-#file_content = repo.get_contents(os.environ["WIKI_DIR"]+"feedback.md")
-
-#print("file_content")

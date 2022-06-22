@@ -41,6 +41,8 @@ jobs:
           ls -la
           mv -v "$REPOSITORY_NAME"/wiki/* "$REPOSITORY_NAME".wiki/
           cd "$REPOSITORY_NAME".wiki
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
           git commit -m "Generated Wiki"
           git push

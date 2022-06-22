@@ -29,6 +29,7 @@ jobs:
       - name: copy wiki
         run: |
           cp -r wiki ../
+          echo ${{github.repository}}
           
           
           
@@ -42,6 +43,7 @@ jobs:
           
       - name: add content to wiki
         run: |
+          echo ${{github.repository}}
           ls -la
           cp ../wiki/* ./
           git config --local user.email "action@github.com"
@@ -57,7 +59,7 @@ jobs:
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
         with:
-          repository: ${{github.repository}}.wiki.git    # specify the wiki repo and push the update.
+          repository: ${{github.repository}}.wiki    # specify the wiki repo and push the update.
           github_token: ${{ secrets.GITHUB_TOKEN }}
        # git config --local user.email "action@github.com"
          # git config --local user.name "GitHub Action"

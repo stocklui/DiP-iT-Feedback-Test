@@ -30,6 +30,7 @@ jobs:
         run: |
           REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           cd ..
+          cd ..
           git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" 
           pwd
           mv -v /wiki/* .wiki/

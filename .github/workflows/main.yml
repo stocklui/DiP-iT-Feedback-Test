@@ -29,7 +29,7 @@ jobs:
       - name: copy wiki
         run: |
           cp -r wiki feedback 
-          mv feedback ../
+          mv -r feedback ../
           echo ${{github.repository}}
           
           
@@ -46,7 +46,7 @@ jobs:
         run: |
           echo ${{github.repository}}
           ls -la
-          cp ../feedback/* ./
+          cp ../feedback/feedback.md ./feedback_$(date '+%s').md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
@@ -76,7 +76,8 @@ jobs:
           mv ../feedback/feedback.md ./feedback.md
           cat feedback_bak.md >> feedback.md
           rm feedback_bak.md
-      - name: add feedback log to wiki log
+          
+      - name: add feedback wiki
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

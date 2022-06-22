@@ -61,7 +61,7 @@ jobs:
         with:    # specify the wiki repo and push the update.
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}.wiki
-          branch: main
+          branch: master
        # git config --local user.email "action@github.com"
          # git config --local user.name "GitHub Action"
        # git push

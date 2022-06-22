@@ -1,7 +1,11 @@
 name: CI
 
 on:
-  push
+  push:
+    types:
+      - created
+      - edited
+    
 
 jobs:
   build:

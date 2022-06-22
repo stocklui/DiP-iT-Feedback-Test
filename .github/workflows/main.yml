@@ -26,6 +26,11 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           WIKI_DIR: ${{github.repository}}.wiki
           
+      - name: Checkout wiki code
+        uses: actions/checkout@v2
+        with:
+          repository: ${{github.repository}}.wiki
+          
       - name: add content to wiki
         run: |
           REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')

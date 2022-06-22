@@ -119,23 +119,22 @@ jobs:
           repository: ${{ github.repository }}.wiki
           branch: master
           
+      - name: Checkout repo code
+        uses: actions/checkout@v3
+        with:
+          repository: ${{github.repository}}
+          ref: 'main'
+          
       - name: update readme file back to normal
         run: |
+          pwd 
+          ls -la
           git update-index --chmod=+x ./feedback/feedback_change_readme.py
           python ./feedback/feedback_change_readme.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           
-       # git config --local user.email "action@github.com"
-         # git config --local user.name "GitHub Action"
-       # git push
-          
-      #- uses: actions/checkout@v2
-      #  with:
-      #    repository: ${{github.repository}}.wiki
-        #   cd ${GITHUB_REPOSITORY}.wiki
-        
-          # ##
+
         
           

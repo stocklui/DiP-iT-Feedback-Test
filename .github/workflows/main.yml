@@ -36,7 +36,7 @@ jobs:
           cd "$REPOSITORY_NAME"/
           ls -la
           cd ..
-          mv -v /"$REPOSITORY_NAME"/wiki/* .wiki/
+          mv -v /wiki/* .wiki/
           cd .wiki
           git add .
           git commit -m "Generated Wiki"

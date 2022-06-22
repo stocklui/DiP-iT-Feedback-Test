@@ -33,6 +33,7 @@ jobs:
           cd ..
           git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" 
           pwd
+          ls -la
           mv -v /"$REPOSITORY_NAME"/wiki/* .wiki/
           cd .wiki
           git add .

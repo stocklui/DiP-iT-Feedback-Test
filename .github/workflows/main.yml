@@ -32,14 +32,14 @@ jobs:
           cd ..
           git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" 
           pwd
-          mv -v REPOSITORY_NAME/wiki/* REPOSITORY_NAME.wiki/
-          cd REPOSITORY_NAME.wiki
+          mv -v /wiki/* .wiki/
+          cd .wiki
           git add .
           git commit -m "Generated Wiki"
           git push
-      - uses: actions/checkout@v2
-        with:
-          repository: ${{github.repository}}.wiki
+      #- uses: actions/checkout@v2
+      #  with:
+      #    repository: ${{github.repository}}.wiki
         #   cd ${GITHUB_REPOSITORY}.wiki
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -46,7 +46,6 @@ jobs:
           cp ../feedback/feedback.md ./.log/feedback_$(date '+%s').md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull
           git add .
           git commit -m "Add feedback to log"
         env:
@@ -81,7 +80,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull
           git add feedback.md
           git commit -m "Update Feedback"
         env:

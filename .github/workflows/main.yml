@@ -1,14 +1,8 @@
 name: CI
 
-#on:
- # push:
-  #label:
-   # types:
-    #  - created
-     # - edited
-on: 
-  issues:
-    types: [opened, edited, milestoned]
+on:
+  push
+
     
 
 jobs:

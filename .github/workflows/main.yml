@@ -46,7 +46,7 @@ jobs:
         run: |
           echo ${{github.repository}}
           ls -la
-          cp ../wiki/* ./
+          cp ../feedback/* ./
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
@@ -73,7 +73,7 @@ jobs:
       - name: concatinate feedback
         run: |
           mv feedback.md feedback_bak.md
-          mv ../wiki/feedback.md ./feedback.md
+          mv ../feedback/feedback.md ./feedback.md
           cat feedback_bak.md >> feedback.md
           rm feedback_bak.md
       - name: add feedback log to wiki log

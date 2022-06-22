@@ -51,7 +51,7 @@ jobs:
           
           git add .
           git commit -m "Generated Wiki"
-          git remote set-url --push origin https://${{ github.actor }}:$GITHUB_TOKEN@github.com/"$GITHUB_REPOSITORY".wiki.git
+          git remote set-url --push origin https://"$GITHUB_ACTOR":"$GITHUB_TOKEN"@github.com/"$GITHUB_REPOSITORY".wiki.git
        # git config --local user.email "action@github.com"
          # git config --local user.name "GitHub Action"
        # git push
@@ -61,6 +61,7 @@ jobs:
       #    repository: ${{github.repository}}.wiki
         #   cd ${GITHUB_REPOSITORY}.wiki
         env:
+          GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           WIKI_DIR: ${{github.repository}}.wiki

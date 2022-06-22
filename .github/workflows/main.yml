@@ -44,6 +44,7 @@ jobs:
           cd ..
           pwd
           ls -la
+          REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           cd "$REPOSITORY_NAME".wiki
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

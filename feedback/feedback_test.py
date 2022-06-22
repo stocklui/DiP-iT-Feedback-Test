@@ -20,7 +20,7 @@ while contents1:
 print(all_files)
 if ('wiki/feedback.md' or 'wiki') in all_files:
     contents_wiki = repo.get_contents("wiki/feedback.md")
-    repo.delete_file(contents.path, "remove wiki", contents.sha, branch="main")
+    repo.delete_file(contents_wiki.path, "remove wiki", contents_wiki.sha, branch="main")
     repo.create_file("wiki/feedback.md", "add tmp feedback", "this should be feedback information")
 else:
     print("wiki didnt existed")

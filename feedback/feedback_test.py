@@ -4,9 +4,11 @@ import os
 g = Github(os.environ["GITHUB_TOKEN"])
 
 repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
-repo.create_file("test_create_file/test.md", "add testfile", "test 1")
-contents = repo.get_contents("")
-print(contents)
+#repo.create_file("test_create_file/test.md", "add testfile", "test 1")
+contents = repo.get_contents("README.md")
+repo.update_file(contents.path, "update readme", "\\n new content added by script", contents.sha, branch="main")
+#contents = repo.get_contents("")
+#print(contents)
 
 #repo.create_file("wiki/feedback.md", "add/update wiki doc", '#Add wiki pagec\n content1', branch="main")
 

@@ -18,10 +18,12 @@ while contents1:
         file = file_content
         all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
 print(all_files)
-if 'wiki/feedback.md' in all_files:
+if ('wiki/feedback.md' or 'wiki') in all_files:
     contents_wiki = repo.get_contents("wiki/feedback.md")
     repo.delete_file(contents.path, "remove wiki", contents.sha, branch="main")
+    repo.create_file("wiki/feedback.md", "add tmp feedback", "this should be feedback information")
 else:
+    print("wiki didnt existed")
     repo.create_file("wiki/feedback.md", "add tmp feedback", "this should be feedback information")
 time.sleep(5)
 #

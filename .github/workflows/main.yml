@@ -28,12 +28,8 @@ jobs:
           
       - name: copy wiki
         run: |
-          cp -r wiki feedback 
-          mv feedback ../
+          cp -r wiki ../feedback 
           echo ${{github.repository}}
-          
-          
-          
       
           
       - name: Checkout wiki code
@@ -46,6 +42,7 @@ jobs:
         run: |
           echo ${{github.repository}}
           ls -la
+          ls -la ../feedback
           cp ../feedback/feedback.md ./feedback_$(date '+%s').md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

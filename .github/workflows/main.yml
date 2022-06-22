@@ -28,8 +28,9 @@ jobs:
           
       - name: copy wiki
         run: |
-          cp -r wiki ../feedback 
+          mv wiki ../feedback
           echo ${{github.repository}}
+       # cp -r wiki ../feedback 
       
           
       - name: Checkout wiki code
@@ -96,6 +97,15 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}.wiki
           branch: master
+          
+      - name: update readme file back to normal
+        run: |
+          git update-index --chmod=+x ./feedback/feedback_change_readme.py
+          python ./feedback/feedback_change_readme.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          
        # git config --local user.email "action@github.com"
          # git config --local user.name "GitHub Action"
        # git push

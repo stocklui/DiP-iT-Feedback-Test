@@ -36,7 +36,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${{github.repository}}.wiki
-          branch: main
         
           
       - name: add feedback log to wiki log
@@ -60,14 +59,13 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}.wiki
           branch: main
-          
-      - name: Checkout wiki code
-        uses: actions/checkout@v2
-        with:
-          repository: ${{github.repository}}.wiki
-          branch: master
         
-          
+        
+      - name: clear changes
+        run: |
+          rm -fr .log
+      
+      
       - name: concatinate feedback
         run: |
           mv feedback.md feedback_bak.md

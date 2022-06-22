@@ -9,8 +9,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Checkout wiki code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           repository: ${{github.repository}}.wiki
       - uses: actions/setup-python@v1
@@ -26,14 +25,19 @@ jobs:
           REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
+          
+      - name: add content to wiki
+        run: |
           pwd
           git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" repo_wiki
           mv -v wiki/* repo_wiki/
-          # cd ${GITHUB_REPOSITORY}.wiki
           cd repo_wiki
           git add .
           git commit -m "Generated Wiki"
           git push
+        #   cd ${GITHUB_REPOSITORY}.wiki
+          
+        
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

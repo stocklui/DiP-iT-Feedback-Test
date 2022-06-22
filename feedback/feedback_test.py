@@ -4,7 +4,12 @@ import os
 g = Github(os.environ["GITHUB_TOKEN"])
 
 repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
-repo.create_file("wiki/feedback.md", "add/update wiki doc", '#Add wiki pagec\n content1', branch="main")
+contents = repo.get_contents("")
+print(contents)
+
+#repo.create_file("wiki/feedback.md", "add/update wiki doc", '#Add wiki pagec\n content1', branch="main")
+
+# repo.update_file(contents.path, "more tests", "more tests", contents.sha, branch="test")
 
 #contents = repo.get_contents("")
 #while contents:

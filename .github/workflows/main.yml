@@ -26,6 +26,14 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           WIKI_DIR: ${{github.repository}}.wiki
           
+      - name: clone wiki
+        run: |
+          REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
+          cd ..
+          git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" 
+          mv -v "$REPOSITORY_NAME"/wiki/* "$REPOSITORY_NAME".wiki/
+      
+          
       - name: Checkout wiki code
         uses: actions/checkout@v2
         with:
@@ -33,18 +41,9 @@ jobs:
           
       - name: add content to wiki
         run: |
-          REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
-          cd ..
-          git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" 
-          pwd
-          ls -la
-          cd "$REPOSITORY_NAME"/wiki
-          ls -la
-          cd ..
           cd ..
           pwd
           ls -la
-          mv -v "$REPOSITORY_NAME"/wiki/* "$REPOSITORY_NAME".wiki/
           cd "$REPOSITORY_NAME".wiki
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

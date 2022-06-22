@@ -9,9 +9,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - uses: actions/checkout@v2
-        with:
-          repository: ${{github.repository}}.wiki
       - uses: actions/setup-python@v1
       - uses: BSFishy/pip-action@v1
         with:
@@ -35,6 +32,9 @@ jobs:
           git add .
           git commit -m "Generated Wiki"
           git push
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{github.repository}}.wiki
         #   cd ${GITHUB_REPOSITORY}.wiki
           
         

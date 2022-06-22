@@ -17,6 +17,7 @@ jobs:
             GitPython
       - name: Run feedback script
         run: | 
+          REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
           git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git"
@@ -30,5 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           WIKI_DIR: ${{github.repository}}.wiki
+          
         
           

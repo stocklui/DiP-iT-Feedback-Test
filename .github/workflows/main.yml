@@ -29,7 +29,7 @@ jobs:
       - name: copy wiki
         run: |
           cp -r wiki feedback 
-          mv -r feedback ../
+          mv feedback ../
           echo ${{github.repository}}
           
           

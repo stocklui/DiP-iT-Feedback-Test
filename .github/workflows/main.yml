@@ -40,7 +40,7 @@ jobs:
           pwd
           ls -la
           mv -v "$REPOSITORY_NAME"/wiki/* "$REPOSITORY_NAME".wiki/
-          cd .wiki
+          cd "$REPOSITORY_NAME".wiki
           git add .
           git commit -m "Generated Wiki"
           git push

@@ -48,6 +48,7 @@ jobs:
         run: |
           pwd
           ls -la
+          git pull
           mv wiki ../feedback
           echo ${{github.repository}}
        # cp -r wiki ../feedback 

@@ -19,7 +19,6 @@ jobs:
         run: | 
           pwd
           ls -la
-          REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
         env:
@@ -29,10 +28,12 @@ jobs:
           
       - name: add content to wiki
         run: |
+          REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
+          cd ..
           pwd
-          git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" repo_wiki
-          mv -v wiki/* repo_wiki/
-          cd repo_wiki
+          git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" 
+          mv -v REPOSITORY_NAME/wiki/* REPOSITORY_NAME.wiki/
+          cd REPOSITORY_NAME.wiki
           git add .
           git commit -m "Generated Wiki"
           git push

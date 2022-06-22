@@ -28,7 +28,8 @@ jobs:
           
       - name: copy wiki
         run: |
-          cp -r wiki ../
+          cp -r wiki feedback 
+          mv feedback ../
           echo ${{github.repository}}
           
           
@@ -41,7 +42,7 @@ jobs:
           repository: ${{github.repository}}.wiki
         
           
-      - name: add content to wiki
+      - name: add feedback log to wiki log
         run: |
           echo ${{github.repository}}
           ls -la
@@ -49,7 +50,38 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Add changes"
+          git commit -m "Add feedback to log"
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          WIKI_DIR: ${{github.repository}}.wiki
+          
+      - name: Push changes to wiki repo
+        uses: ad-m/github-push-action@master
+        with:    # specify the wiki repo and push the update.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}.wiki
+          branch: log
+          
+      - name: Checkout wiki code
+        uses: actions/checkout@v2
+        with:
+          repository: ${{github.repository}}.wiki
+        
+          
+      - name: concatinate feedback
+        run: |
+          mv feedback.md feedback_bak.md
+          mv ../wiki/feedback.md ./feedback.md
+          cat feedback_bak.md >> feedback.md
+          rm feedback_bak.md
+      - name: add feedback log to wiki log
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add feedback.md
+          git commit -m "Update Feedback"
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -23,9 +23,10 @@ jobs:
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
           pwd
-          git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git"
-          mv -v ${REPOSITORY_NAME}/wiki/* ${REPOSITORY_NAME}.wiki/
-          cd ${GITHUB_REPOSITORY}.wiki
+          git clone "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" repo_wiki
+          mv -v wiki/* repo_wiki/
+          # cd ${GITHUB_REPOSITORY}.wiki
+          cd repo_wiki
           git add .
           git commit -m "Generated Wiki"
           git push

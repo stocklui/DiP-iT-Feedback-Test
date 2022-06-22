@@ -58,8 +58,7 @@ jobs:
           
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
-        with:
-          branch: ${{ github.ref }}    # specify the wiki repo and push the update.
+        with:    # specify the wiki repo and push the update.
           github_token: ${{ secrets.GITHUB_TOKEN }}
        # git config --local user.email "action@github.com"
          # git config --local user.name "GitHub Action"

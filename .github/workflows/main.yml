@@ -22,6 +22,10 @@ jobs:
           REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
           git update-index --chmod=+x ./feedback/feedback_test.py
           python ./feedback/feedback_test.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          WIKI_DIR: ${{github.repository}}.wiki
           
       - name: add content to wiki
         run: |
@@ -36,9 +40,6 @@ jobs:
         with:
           repository: ${{github.repository}}.wiki
         #   cd ${GITHUB_REPOSITORY}.wiki
-          
-        
-          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}

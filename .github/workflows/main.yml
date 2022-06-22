@@ -71,6 +71,7 @@ jobs:
         run: |
           mv feedback.md feedback_bak.md
           mv ../feedback/feedback.md ./feedback.md
+          echo "\n--------------------------------------\n" >> feedback.md
           cat feedback_bak.md >> feedback.md
           rm feedback_bak.md
           

@@ -41,12 +41,13 @@ jobs:
             GitPython
       
           
-      - name: copy wiki
+      - name: move wiki
         run: |
           pwd
           ls -la
           git pull
           mv wiki ../feedback
+          rm -r wiki
           echo ${{github.repository}}
        # cp -r wiki ../feedback 
       

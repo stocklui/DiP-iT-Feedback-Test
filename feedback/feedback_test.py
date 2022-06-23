@@ -7,7 +7,7 @@ g = Github(os.environ["GITHUB_TOKEN"])
 repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
 contents = repo.get_contents("README.md")
 file_content = contents.decoded_content.decode()
-if ("[Feedback](../../wiki/feedback)" and " ##Feedback Section " in file_content:
+if ("[Feedback](../../wiki/feedback)" and " ##Feedback Section ") in file_content:
     print("readme already initialized")
     new_message = file_content.replace("Click here to get your Feedback -> [Feedback](../../wiki/feedback)",'Getting Feedback now...')
 else:

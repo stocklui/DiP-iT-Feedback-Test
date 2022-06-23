@@ -6,28 +6,10 @@ g = Github(os.environ["GITHUB_TOKEN"])
 
 repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
 contents = repo.get_contents("README.md")
-new_file_content = contents.decoded_content.decode()
-new_message = new_file_content.replace("[Feedback](../../wiki/feedback)",'#Getting Feedback now...')
-repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
-# getting feedback and writing into following file
-all_files = []
-contents1 = repo.get_contents("")
-while contents1:
-    file_content = contents1.pop(0)
-    if file_content.type == "dir":
-        contents1.extend(repo.get_contents(file_content.path))
-    else:
-        file = file_content
-        all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
-print(all_files)
-if ('wiki/feedback.md' or 'wiki') in all_files:
-    contents_wiki = repo.get_contents("wiki/feedback.md")
-    repo.delete_file(contents_wiki.path, "remove wiki", contents_wiki.sha, branch="main")
-    repo.create_file("wiki/feedback.md", "add tmp feedback", "this should be feedback information")
+file_content = contents.decoded_content.decode()
+if "[Feedback](../../wiki/feedback)" in file_content:
+    new_message = file_content.replace("[Feedback](../../wiki/feedback)",'#Getting Feedback now...')
 else:
-    print("wiki didnt existed")
-    repo.create_file("wiki/feedback.md", "add tmp feedback", "this should be feedback information")
-time.sleep(5)
-#
-
-
+    new_message = file_content + '\ #Getting Feedback now...'
+repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
+repo.create_file("../feedback/feedback.md", "add tmp feedback", "this should be feedback information")

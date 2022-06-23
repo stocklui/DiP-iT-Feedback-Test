@@ -3,7 +3,7 @@ name: CI
 on:
   push
 
-    
+
 
 jobs:
   preparation:
@@ -18,7 +18,7 @@ jobs:
             pygithub
             GitPython
       - name: Run feedback script
-        run: | 
+        run: |
           pwd
           ls -la
           git update-index --chmod=+x ./feedback/feedback_test.py
@@ -38,43 +38,16 @@ jobs:
         with:
           packages: |
             pygithub
-            GitPython
-      
-          
-      - name: move wiki
-        run: |
-          pwd
-          ls -la
-          git pull
-          mv wiki ../feedback
-          ls -la
-       # cp -r wiki ../feedback 
-      - name: commit change, wiki removed
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "move wiki out of repo"
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          
-      - name: Push removed wiki to repo
-        uses: ad-m/github-push-action@master
-        with:    # specify the wiki repo and push the update.
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}.wiki
-          branch: main
-      
-          
+
+
+          ##---------------------------##
       - name: Checkout wiki code
         uses: actions/checkout@v3
         with:
           repository: ${{github.repository}}.wiki
           ref: 'main'
-        
-          
+
+
       - name: add feedback log to wiki log
         run: |
           echo ${{github.repository}}
@@ -89,31 +62,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           WIKI_DIR: ${{github.repository}}.wiki
-          
+
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
         with:    # specify the wiki repo and push the update.
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}.wiki
           branch: main
-        
-        
-          
+
+
       - name: Checkout wiki code
         uses: actions/checkout@v3
         with:
           repository: ${{github.repository}}.wiki
           ref: 'master'
-      
-      
+
+
       - name: concatinate feedback
         run: |
           mv feedback.md feedback_bak.md
           mv ../feedback/feedback.md ./feedback.md
-          echo "\n--------------------------------------\n" >> feedback.md
+          echo "\ --------------------------------------\" >> feedback.md
           cat feedback_bak.md >> feedback.md
           rm feedback_bak.md
-          
+
       - name: add feedback wiki
         run: |
           git config --local user.email "action@github.com"
@@ -125,30 +97,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           WIKI_DIR: ${{github.repository}}.wiki
-          
+
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
         with:    # specify the wiki repo and push the update.
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}.wiki
           branch: master
-          
+
       - name: Checkout repo code
         uses: actions/checkout@v3
         with:
           repository: ${{github.repository}}
           ref: 'main'
-          
+
       - name: update readme file back to normal
         run: |
-          pwd 
+          pwd
           ls -la
           git update-index --chmod=+x ./feedback/feedback_change_readme.py
           python ./feedback/feedback_change_readme.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          
-
-        
-          

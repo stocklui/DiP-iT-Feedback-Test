@@ -34,7 +34,7 @@ else:
     readme_content = r"""# Feedback """
     readme_content= readme_content+r"""
 """
-    readme_content= readme_contentr"""### Getting Feedback now... """
+    readme_content= readme_content + r"""### Getting Feedback now... """
     repo.create_file("README.md", "create README", readme_content, branch="main")
 
 

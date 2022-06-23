@@ -16,7 +16,6 @@ jobs:
         with:
           packages: |
             pygithub
-            GitPython
       - name: Run feedback script
         run: |
           pwd

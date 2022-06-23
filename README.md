@@ -1,4 +1,4 @@
 
 # Project DiP-iT Feedback Test
   
-## Feedback Section  <br>  ### Getting Feedback now...  
+## Feedback Section  <br>  ### Click here to get your Feedback -> [Feedback](../../wiki/feedback)  

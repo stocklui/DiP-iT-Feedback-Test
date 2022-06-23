@@ -28,10 +28,7 @@ if "README.md" in all_files:
     repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
 
 else:
-    repo.create_file("README.md", "create README", 
-                     "# Feedback  
-                     
-                     ### Getting Feedback now...  ", branch="main")
+    repo.create_file("README.md", "create README", "# Feedback \\n \\n ### Getting Feedback now...  ", branch="main")
 
 
 os.mkdir("../feedback")

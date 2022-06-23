@@ -6,7 +6,9 @@ g = Github(os.environ["GITHUB_TOKEN"])
 
 repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
 contents = repo.get_contents("README.md")
-repo.update_file(contents.path, "update readme", '#Getting Feedback now...', contents.sha, branch="main")
+new_file_content = contents.decoded_content.decode()
+new_message = new_file_content.replace("[Feedback](../../wiki/feedback)",'#Getting Feedback now...')
+repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
 # getting feedback and writing into following file
 all_files = []
 contents1 = repo.get_contents("")

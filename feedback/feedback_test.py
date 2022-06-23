@@ -9,7 +9,7 @@ repo = g.get_repo(os.environ["GITHUB_REPOSITORY"])
 all_files = []
 allcontents = repo.get_contents("")
 while allcontents:
-    all_file_content = contents.pop(0)
+    all_file_content = allcontents.pop(0)
     if all_file_content.type == "dir":
         allcontents.extend(repo.get_contents(all_file_content.path))
     else:

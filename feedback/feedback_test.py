@@ -24,14 +24,18 @@ if "README.md" in all_files:
         new_message = file_content.replace("Click here to get your Feedback -> [Feedback](../../wiki/feedback)",'Getting Feedback now...')
     else:
         print("readme not initialized")
-        new_message = file_content + "### Getting Feedback now...  "
+        append_text = r"""
+"""
+        append_text = append_text + """### Getting Feedback now..."""
+        new_message = file_content + append_text
     repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
 
 else:
-    repo.create_file("README.md", "create README", r"""# Feedback 
-                     
-                     
-                     ### Getting Feedback now...  """, branch="main")
+    readme_content = r"""# Feedback """
+    readme_content= readme_content+r"""
+"""
+    readme_content= readme_contentr"""### Getting Feedback now... """
+    repo.create_file("README.md", "create README", readme_content, branch="main")
 
 
 os.mkdir("../feedback")

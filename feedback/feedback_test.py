@@ -9,10 +9,10 @@ contents = repo.get_contents("README.md")
 file_content = contents.decoded_content.decode()
 if "[Feedback](../../wiki/feedback)" in file_content:
     print("readme already contained link to wiki")
-    new_message = file_content.replace("[Feedback](../../wiki/feedback)",'#Getting Feedback now...')
+    new_message = file_content.replace("[Feedback](../../wiki/feedback)",'Getting Feedback now...')
 else:
     print("readme didnt contain link to wiki")
-    new_message = file_content + '\ #Getting Feedback now...'
+    new_message = file_content + 'Getting Feedback now...'
 repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
 
 os.mkdir("../feedback")

@@ -47,7 +47,6 @@ jobs:
           ls -la
           git pull
           mv wiki ../feedback
-          rm -r wiki
           echo ${{github.repository}}
        # cp -r wiki ../feedback 
       

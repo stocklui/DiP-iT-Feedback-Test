@@ -49,6 +49,23 @@ jobs:
           mv wiki ../feedback
           ls -la
        # cp -r wiki ../feedback 
+      - name: commit change, wiki removed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "move wiki out of repo"
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          
+      - name: Push removed wiki to repo
+        uses: ad-m/github-push-action@master
+        with:    # specify the wiki repo and push the update.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}.wiki
+          branch: main
       
           
       - name: Checkout wiki code

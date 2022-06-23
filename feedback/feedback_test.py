@@ -12,7 +12,7 @@ if ("[Feedback](../../wiki/feedback)" and "Feedback Section") in file_content:
     new_message = file_content.replace("Click here to get your Feedback -> [Feedback](../../wiki/feedback)",'Getting Feedback now...')
 else:
     print("readme not initialized")
-    new_message = file_content + "## Feedback Section    Getting Feedback now...  "
+    new_message = file_content + "## Feedback Section  <br>Getting Feedback now...  "
 repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
 
 os.mkdir("../feedback")

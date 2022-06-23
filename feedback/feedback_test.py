@@ -12,4 +12,9 @@ if "[Feedback](../../wiki/feedback)" in file_content:
 else:
     new_message = file_content + '\ #Getting Feedback now...'
 repo.update_file(contents.path, "update readme", new_message, contents.sha, branch="main")
-repo.create_file("../feedback/feedback.md", "add tmp feedback", "this should be feedback information")
+
+os.mkdir("../feedback")
+f = open("../feedback/feedback.md","w")
+f.write("This should contain feedback")
+f.close()
+# repo.create_file("../feedback/feedback.md", "add tmp feedback", "this should be feedback information")

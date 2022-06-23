@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  preparation:
+  generate_feedback:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -26,16 +26,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          WIKI_DIR: ${{github.repository}}.wiki
 
-
-          ##---------------------------##
       - name: Checkout wiki code
         uses: actions/checkout@v3
         with:
           repository: ${{github.repository}}.wiki
           ref: 'main'
-
 
       - name: add feedback log to wiki log
         run: |
@@ -50,7 +46,6 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          WIKI_DIR: ${{github.repository}}.wiki
 
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
@@ -59,19 +54,17 @@ jobs:
           repository: ${{ github.repository }}.wiki
           branch: main
 
-
       - name: Checkout wiki code
         uses: actions/checkout@v3
         with:
           repository: ${{github.repository}}.wiki
           ref: 'master'
 
-
       - name: concatinate feedback
         run: |
           mv feedback.md feedback_bak.md
           mv ../feedback/feedback.md ./feedback.md
-          echo "\\ --------------------------------------\\" >> feedback.md
+          echo "\ --------------------------------------\" >> feedback.md
           cat feedback_bak.md >> feedback.md
           rm feedback_bak.md
 

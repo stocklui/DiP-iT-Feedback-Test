@@ -1,7 +1,10 @@
 name: CI
 
 on:
-  push
+  push:
+  schedule:
+    - cron: '30 15 * *'
+    
 
 
 

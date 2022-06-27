@@ -3,7 +3,7 @@ name: CI
 on:
   push:
   schedule:
-    - cron: '35 11 * * *'
+    - cron: '0 10 * * *'
     
 
 
